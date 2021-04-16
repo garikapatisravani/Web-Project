@@ -14,9 +14,9 @@ export class GeneralService {
 
   constructor(private _http: HttpClient) { }
 
-  getRestaurants(place) {
+  getRestaurants(place, recipe) {
     return this._http.get('https://api.foursquare.com/v2/venues/search' + '?client_id=' + this.fs_clientID + '&client_secret=' + this.fs_clientSecret + 
-      '&v=20160215&limit=5' + '&near=' + place);
+      '&v=20160215&limit=5' + '&near=' + place+ '&query=' + recipe);
   }
 
   getRecepies(recipe) {
