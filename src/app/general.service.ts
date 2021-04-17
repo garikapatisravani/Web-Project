@@ -28,15 +28,17 @@ export class GeneralService {
   }
 
   recipeByIngredients(ingredients) {
-    return this._http.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + ingredients + '&apiKey='+ this.spoonacular_key+'XXXXXXXXX');
+    return this._http.get('https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + ingredients + '&apiKey='+ this.spoonacular_key);
     // https://api.spoonacular.com/recipes/findByIngredients?ingredients=chicken,%20pepper,%20cheese&number=2&limitLicense=True&ranking=1&ignorePantry=True&apiKey=xxxxxxxxxxxxxxx'
   }
 
-  recipeByCusine(cusine) {
+  recipeByCusine(search, cusine) {
+    return this._http.get('https://api.spoonacular.com/recipes/complexSearch?query='+ search +'&cuisine=' + cusine + '&apiKey='+ this.spoonacular_key);
     // https://api.spoonacular.com/recipes/complexSearch?query=Chicken%20with%20no%20oil&cuisine=Indian&apiKey=973093c3128f44b9a1875a5536026b94
   }
 
   getRecipeInfo(id) {
+    return this._http.get('https://api.spoonacular.com/recipes/' + id + '/information?includeNutrition=true&apiKey='+ this.spoonacular_key);
     // https://api.spoonacular.com/recipes/716429/information?includeNutrition=false
   }
 }

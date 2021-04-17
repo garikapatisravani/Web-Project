@@ -27,6 +27,8 @@ import { GeneralService } from './general.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ResultsDialogComponent } from './components/results-dialog/results-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CheckCaloriesComponent,
     FindRecipesComponent,
     NutritionByNameComponent,
-    NearbyRestaurantsComponent
+    NearbyRestaurantsComponent,
+    ResultsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSelectModule,
     HttpClientModule,
     MatCheckboxModule,
-    MatExpansionModule               
+    MatExpansionModule,
+    MatDialogModule               
   ],
   providers: [],
   bootstrap: [AppComponent]

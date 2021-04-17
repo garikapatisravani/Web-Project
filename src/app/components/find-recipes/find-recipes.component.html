@@ -5,7 +5,7 @@
     (closed)="panelOpenState = false"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> Find By Nutrients </mat-panel-title>
+      <mat-panel-title> Recipes By Nutrients </mat-panel-title>
       <mat-panel-description>
         <!-- Currently I am {{ panelOpenState ? "open" : "closed" }} -->
         <span *ngIf="panelOpenState">Enter all values in grams</span>
@@ -22,117 +22,100 @@
             <mat-checkbox class="example-margin">Carbs</mat-checkbox>
           </div>
           <div class="col-4">
-            <!-- <span>Low</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>Low</mat-label>
-              <input matInput formControlName="lowCarbs" />
+              <mat-label>min</mat-label>
+              <input matInput formControlName="minCarbs" />
             </mat-form-field>
           </div>
           <div class="col-4">
-            <!-- <span>High</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>High</mat-label>
-              <input matInput formControlName="highCarbs" />
+              <mat-label>max</mat-label>
+              <input matInput formControlName="maxCarbs" />
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <!-- <mat-checkbox class="example-margin">Protein</mat-checkbox> -->
           <div class="col-2">
             <mat-checkbox class="example-margin">Protein</mat-checkbox>
           </div>
           <div class="col-4">
-            <!-- <span>Low</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>Low</mat-label>
-              <input matInput formControlName="lowProtein" />
+              <mat-label>min</mat-label>
+              <input matInput formControlName="minProtein" />
             </mat-form-field>
           </div>
           <div class="col-4">
-            <!-- <span>High</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>High</mat-label>
-              <input matInput formControlName="highProtein" />
+              <mat-label>max</mat-label>
+              <input matInput formControlName="maxProtein" />
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <!-- <mat-checkbox class="example-margin">Fat</mat-checkbox> -->
           <div class="col-2">
             <mat-checkbox class="example-margin">Fat</mat-checkbox>
           </div>
           <div class="col-4">
-            <!-- <span>Low</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>Low</mat-label>
-              <input matInput formControlName="lowFat" />
+              <mat-label>min</mat-label>
+              <input matInput formControlName="minFat" />
             </mat-form-field>
           </div>
           <div class="col-4">
-            <!-- <span>High</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>High</mat-label>
-              <input matInput formControlName="highFat" />
+              <mat-label>max</mat-label>
+              <input matInput formControlName="maxFat" />
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <!-- <mat-checkbox class="example-margin">Calories</mat-checkbox> -->
           <div class="col-2">
             <mat-checkbox class="example-margin">Calories</mat-checkbox>
           </div>
           <div class="col-4">
-            <!-- <span>Low</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>Low</mat-label>
-              <input matInput formControlName="lowCal" />
+              <mat-label>min</mat-label>
+              <input matInput formControlName="minCalories" />
             </mat-form-field>
           </div>
           <div class="col-4">
-            <!-- <span>High</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>High</mat-label>
-              <input matInput formControlName="highCal" />
+              <mat-label>max</mat-label>
+              <input matInput formControlName="maxCalories" />
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <!-- <mat-checkbox class="example-margin">Fiber</mat-checkbox> -->
           <div class="col-2">
             <mat-checkbox class="example-margin">Fiber</mat-checkbox>
           </div>
           <div class="col-4">
-            <!-- <span>Low</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>Low</mat-label>
-              <input matInput formControlName="lowFiber" />
+              <mat-label>min</mat-label>
+              <input matInput formControlName="minFiber" />
             </mat-form-field>
           </div>
           <div class="col-4">
-            <!-- <span>High</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>High</mat-label>
-              <input matInput formControlName="highFiber" />
+              <mat-label>max</mat-label>
+              <input matInput formControlName="maxFiber" />
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <!-- <mat-checkbox class="example-margin">Iron</mat-checkbox> -->
           <div class="col-2">
             <mat-checkbox class="example-margin">Iron</mat-checkbox>
           </div>
           <div class="col-4">
-            <!-- <span>Low</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>Low</mat-label>
-              <input matInput formControlName="lowIron" />
+              <mat-label>min</mat-label>
+              <input matInput formControlName="minIron" />
             </mat-form-field>
           </div>
           <div class="col-4">
-            <!-- <span>High</span> -->
             <mat-form-field appearance="fill">
-              <mat-label>High</mat-label>
-              <input matInput formControlName="highIron" />
+              <mat-label>max</mat-label>
+              <input matInput formControlName="maxIron" />
             </mat-form-field>
           </div>
         </div>
@@ -142,148 +125,46 @@
       </form>
     </div>
   </mat-expansion-panel>
-
+  <mat-expansion-panel
+    class="container m-auto ex-panel"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Recipes By Ingredients </mat-panel-title>
+      <mat-panel-description>
+        
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field class="example-full-width">
+      <mat-label>Ingredients</mat-label>
+      <textarea matInput placeholder="Enter Ingredients with comma seperate values" #ingredients></textarea>
+    </mat-form-field>
+    <div class="col m-auto">
+      <button mat-raised-button color="primary" (click)="findRecipeByIngredients(ingredients.value)">Find</button>
+    </div>
+  </mat-expansion-panel>
   <mat-expansion-panel
   class="container m-auto ex-panel"
   (opened)="panelOpenState = true"
   (closed)="panelOpenState = false"
 >
   <mat-expansion-panel-header>
-    <mat-panel-title> Find By Nutrients </mat-panel-title>
+    <mat-panel-title> Recipes by Cuisine </mat-panel-title>
     <mat-panel-description>
-      <!-- Currently I am {{ panelOpenState ? "open" : "closed" }} -->
-      <span *ngIf="panelOpenState">Enter all values in grams</span>
+      
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <div>
-    <form
-      [formGroup]="findByNutrientsForm"
-      (ngSubmit)="findRecipeByNutrients()"
-    >
-      <h5>Find By Nutrients</h5>
-      <div class="row">
-        <div class="col-2">
-          <mat-checkbox class="example-margin">Carbs</mat-checkbox>
-        </div>
-        <div class="col-4">
-          <!-- <span>Low</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Low</mat-label>
-            <input matInput formControlName="lowCarbs" />
-          </mat-form-field>
-        </div>
-        <div class="col-4">
-          <!-- <span>High</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>High</mat-label>
-            <input matInput formControlName="highCarbs" />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <mat-checkbox class="example-margin">Protein</mat-checkbox> -->
-        <div class="col-2">
-          <mat-checkbox class="example-margin">Protein</mat-checkbox>
-        </div>
-        <div class="col-4">
-          <!-- <span>Low</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Low</mat-label>
-            <input matInput formControlName="lowProtein" />
-          </mat-form-field>
-        </div>
-        <div class="col-4">
-          <!-- <span>High</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>High</mat-label>
-            <input matInput formControlName="highProtein" />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <mat-checkbox class="example-margin">Fat</mat-checkbox> -->
-        <div class="col-2">
-          <mat-checkbox class="example-margin">Fat</mat-checkbox>
-        </div>
-        <div class="col-4">
-          <!-- <span>Low</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Low</mat-label>
-            <input matInput formControlName="lowFat" />
-          </mat-form-field>
-        </div>
-        <div class="col-4">
-          <!-- <span>High</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>High</mat-label>
-            <input matInput formControlName="highFat" />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <mat-checkbox class="example-margin">Calories</mat-checkbox> -->
-        <div class="col-2">
-          <mat-checkbox class="example-margin">Calories</mat-checkbox>
-        </div>
-        <div class="col-4">
-          <!-- <span>Low</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Low</mat-label>
-            <input matInput formControlName="lowCal" />
-          </mat-form-field>
-        </div>
-        <div class="col-4">
-          <!-- <span>High</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>High</mat-label>
-            <input matInput formControlName="highCal" />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <mat-checkbox class="example-margin">Fiber</mat-checkbox> -->
-        <div class="col-2">
-          <mat-checkbox class="example-margin">Fiber</mat-checkbox>
-        </div>
-        <div class="col-4">
-          <!-- <span>Low</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Low</mat-label>
-            <input matInput formControlName="lowFiber" />
-          </mat-form-field>
-        </div>
-        <div class="col-4">
-          <!-- <span>High</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>High</mat-label>
-            <input matInput formControlName="highFiber" />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <!-- <mat-checkbox class="example-margin">Iron</mat-checkbox> -->
-        <div class="col-2">
-          <mat-checkbox class="example-margin">Iron</mat-checkbox>
-        </div>
-        <div class="col-4">
-          <!-- <span>Low</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>Low</mat-label>
-            <input matInput formControlName="lowIron" />
-          </mat-form-field>
-        </div>
-        <div class="col-4">
-          <!-- <span>High</span> -->
-          <mat-form-field appearance="fill">
-            <mat-label>High</mat-label>
-            <input matInput formControlName="highIron" />
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col m-auto">
-        <button mat-raised-button color="primary">Calculate</button>
-      </div>
-    </form>
+  <mat-form-field class="example-full-width">
+    <mat-label>Specifications</mat-label>
+    <textarea matInput placeholder="Specifications like chicken with less oil" #specifics></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Cusine</mat-label>
+    <input matInput placeholder="Enter Cusine. Eg. Indian" #cusine>
+  </mat-form-field>
+  <div class="col m-auto">
+    <button mat-raised-button color="primary" (click)="findRecipeByCusine(specifics.value,cusine.value)">Find</button>
   </div>
 </mat-expansion-panel>
 </mat-accordion>
