@@ -29,6 +29,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ResultsDialogComponent } from './components/results-dialog/results-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatDialogModule               
+    MatDialogModule,
+    MatDividerModule               
   ],
   providers: [],
   bootstrap: [AppComponent]

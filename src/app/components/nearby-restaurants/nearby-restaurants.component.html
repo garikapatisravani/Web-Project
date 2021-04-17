@@ -1,4 +1,4 @@
-<div class="parent-container">
+<div>
     <div class="child-container">
       <form>
         <div class="form-group">
@@ -16,9 +16,29 @@
     </div>
   </div>
   <br>
-  <div class="container" *ngIf="restaurants">
+
+
+  <mat-card class="col-6 m-auto" *ngIf="restaurants && restaurants.length">
+    <h4>Near By Restaurants</h4>
+    <mat-list>
+      <div *ngFor="let item of restaurants">
+        <mat-list-item class="m-1">
+          <div>
+          <h5>{{ item.name }}</h5> 
+          <span class="float-right">
+            <a href="http://maps.google.com/maps?saddr={{currentLat}},{{currentLong}}
+            &daddr={{item.location.formattedAddress[0]}},{{item.location.formattedAddress[1]}},{{item.location.formattedAddress[2]}}" target="_blank">
+              <img src="../../../assets/google.png" style="width: 30px; height: 30px;"></a>
+     </span>
+    </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+    </mat-list>
+  </mat-card>
+  <!-- <div class="container" *ngIf="restaurants">
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 restaurant_card" [ngClass]="(restaurants.length == 0)?'hide_card':'show_card'">
+      <div class="col-lg-6" [ngClass]="(restaurants.length == 0)?'hide_card':'show_card'">
         <div class="panel panel-default col-6">
           <div class="panel-heading"><b>Near by Restaurants</b></div>
           <div class="panel-body">
@@ -38,4 +58,4 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
