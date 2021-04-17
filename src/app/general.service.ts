@@ -41,4 +41,9 @@ export class GeneralService {
     return this._http.get('https://api.spoonacular.com/recipes/' + id + '/information?includeNutrition=true&apiKey='+ this.spoonacular_key);
     // https://api.spoonacular.com/recipes/716429/information?includeNutrition=false
   }
+
+  getNutritionByName(name){
+    return this._http.get('https://api.spoonacular.com/recipes/guessNutrition?title=' + name + '&apiKey='+ this.spoonacular_key);
+    // https://api.spoonacular.com/recipes/guessNutrition?title=Cheese%20Pizza&apiKey=973093c3128f44b9a1875a5536026b94
+  }
 }
