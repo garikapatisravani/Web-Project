@@ -1,6 +1,20 @@
-<p>check-calories works!</p>
+<mat-card class="col-5 m-auto">
+  <div>
+      <form [formGroup]="calorieForm" (ngSubmit)="onAnalyze()" class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Enter the Ingredients</mat-label>
+            <textarea matInput formControlName="name" placeholder="Ex.Enter the text here..."></textarea>
+          </mat-form-field>
+          <div class="row p-3">
+              <div class="m-auto">
+                <button mat-raised-button color="primary">Analyze</button>
+              </div>
+            </div>
+        </form>
+  </div>
+</mat-card>
 
-<div>
+<!-- <div>
     <form [formGroup]="bmiForm" (ngSubmit)="calculate()">
         <div class="row p-3">
             <div class="m-auto">
@@ -40,4 +54,4 @@
             </div>
         </div>
     </form>
-</div>
+</div> -->

@@ -46,4 +46,9 @@ export class GeneralService {
     return this._http.get('https://api.spoonacular.com/recipes/guessNutrition?title=' + name + '&apiKey='+ this.spoonacular_key);
     // https://api.spoonacular.com/recipes/guessNutrition?title=Cheese%20Pizza&apiKey=973093c3128f44b9a1875a5536026b94
   }
+
+  getCalorieCount(name){
+    return this._http.get('https://api.edamam.com/api/nutrition-data?app_id=' + this.edamam_id + '&app_key=' + this.edamam_key + '&ingr='+ name);
+    // https://api.edamam.com/api/nutrition-data?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&ingr=1%20large%20apple
+  }
 }
