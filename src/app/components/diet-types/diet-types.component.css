@@ -8,3 +8,15 @@
     background-size: cover;
   }
   
+  .mat-card-content {
+    height: 29vh;
+    overflow: auto;
+  }
+
+  .mat-card:not([class*=mat-elevation-z]) {
+    height: 76vh;
+}
+
+.mat-card-image {
+  height: 26vh;
+}

@@ -1,3 +1,4 @@
+import { GeneralService } from './../../general.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NearbyRestaurantsComponent implements OnInit {
 
-  constructor() { }
+
+  restaurants: any[] = [];
+
+  constructor(private service: GeneralService) { }
 
   ngOnInit(): void {
+   
   }
 
+  getNearByRestaurents(event, place, recipeName){
+    this.service.getRestaurants(place,recipeName).subscribe((res:any) => {
+      this.restaurants = res.response.venues;
+      console.log('restaurants ###########', this.restaurants);
+    })
+    event.preventDefault();
+  }
 }
