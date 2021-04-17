@@ -1,3 +1,4 @@
+import { GeneralService } from 'src/app/general.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,47 +9,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CheckCaloriesComponent implements OnInit {
 
-  bmiForm: FormGroup;
-  bmiResult: any;
-  consideration: string;
+  calorieForm: FormGroup;
+  caloriesCount: any;
+  
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private service: GeneralService) { }
 
   ngOnInit(): void {
-    this.bmiForm = this.formBuilder.group(
+    this.calorieForm = this.formBuilder.group(
       {
-        heightUnits: ['', Validators.required],
-        weightUnits: ['', Validators.required],
-        weight: ['', Validators.required],
-        height: ['', [Validators.required]]
+        name: ['', Validators.required],
       }
     );
   }
 
-  calculate() {
-    if(!this.bmiForm.valid) {
-      return;
-    } else {
-      console.log('Bmi form',this.bmiForm.value);
-      let formData = this.bmiForm.value;
-      if(formData.weightUnits === 'kgs') {
-        formData.weight *= 2.204
-      }
-      if(formData.heightUnits === 'cms') {
-        formData.height *= 0.393; 
-      } 
-      console.log('BMI Value@@@@@@', (formData.weight / formData.height / formData.height ) * 703);
-      this.bmiResult = (formData.weight / formData.height / formData.height ) * 703;
-      if(this.bmiResult < 18.5){
-        this.consideration = 'Under Weight';
-      } else if(this.bmiResult > 18.5 && this.bmiResult < 24.9) {
-        this.consideration = 'Normal Weight';
-      } else if(this.bmiResult > 25 && this.bmiResult < 29.9) {
-        this.consideration = 'Over Weight';
-      } else if(this.bmiResult > 30) {
-        this.consideration = 'Obesity';
-      }
-    }
+  onAnalyze(){
+    this.service.getCalorieCount(this.calorieForm.value.name).subscribe(data => this.caloriesCount = data)
+    console.log("daaata",this.caloriesCount);
   }
-
 }
