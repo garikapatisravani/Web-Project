@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NutritionByNameComponent implements OnInit {
 
   nutritionForm: FormGroup;
-  nutrition: any[] = [];
+  nutrition: any[];
   constructor(private formBuilder: FormBuilder, private service: GeneralService) { }
 
   ngOnInit(): void {
