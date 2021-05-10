@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,14 @@ export class GeneralService {
   edamam_key = "b55955428786112be91789b469d0ec54";
   spoonacular_key = "973093c3128f44b9a1875a5536026b94";
 
+  private recipeResults = new BehaviorSubject<any[]>(null);
+  getUpdatedRecipeResults = this.recipeResults.asObservable();
+
   constructor(private _http: HttpClient) { }
+
+  updateRecipeResults(value: any[]) {
+    this.recipeResults.next(value);
+  }
 
   getRestaurants(place, recipe) {
     return this._http.get('https://api.foursquare.com/v2/venues/search' + '?client_id=' + this.fs_clientID + '&client_secret=' + this.fs_clientSecret + 

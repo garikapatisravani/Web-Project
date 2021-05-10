@@ -3,6 +3,7 @@ import { GeneralService } from 'src/app/general.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ResultsDialogComponent } from '../results-dialog/results-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-recipes',
@@ -15,7 +16,7 @@ export class FindRecipesComponent implements OnInit {
   findByNutrientsForm: FormGroup;
   findByNutrientsResult: any[];
 
-  constructor(private generalService: GeneralService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor(private generalService: GeneralService, private formBuilder: FormBuilder, public router: Router) { }
 
   ngOnInit(): void {
 
@@ -40,9 +41,9 @@ export class FindRecipesComponent implements OnInit {
     //   console.log('Spoonacular response @@@@@@@@@@@', res);
     // })
 
-    this.generalService.getRecepies('Trinidadian Chicken Potato Curry').subscribe(response => {
-      console.log('Recipes List@@@@@@@@@@', response);
-    })
+    // this.generalService.getRecepies('Trinidadian Chicken Potato Curry').subscribe(response => {
+    //   console.log('Recipes List@@@@@@@@@@', response);
+    // })
   }
 
   findRecipeByNutrients() {
@@ -56,7 +57,7 @@ export class FindRecipesComponent implements OnInit {
         nutrients +=`&${item}=${value[item]}`
       }
     })
-    if(value && value.minCarbs && nutrients) {
+    if(value && nutrients) {
       this.generalService.findByNutrients(nutrients).subscribe((res: any) => {
         console.log('response of recipes by ingredients@@@@@@', res);
         // this.findByNutrientsResult = res;
@@ -77,13 +78,16 @@ export class FindRecipesComponent implements OnInit {
     if(rules && cusine) {
       this.generalService.recipeByCusine(rules, cusine).subscribe((res: any) => {
         this.showResults(res.results);
+        console.log('Data of recipe@@@@@@@@@@@', res.results);
       })
     }
   }
 
   showResults(res) {
-    this.dialog.open(ResultsDialogComponent, {
-      data: res
-    });
+    this.generalService.updateRecipeResults(res);
+    this.router.navigate(['recipes'])
+    // this.dialog.open(ResultsDialogComponent, {
+    //   data: res
+    // });
   }
 }

@@ -1,17 +1,26 @@
-<h1 mat-dialog-title>Recipe Results</h1>
+<h1 mat-dialog-title>Detailed Recipe with Instructions</h1>
 <div mat-dialog-content>
-    <div *ngIf="results; else noRecipies" class="row">
-        <div *ngFor="let item of results" class="card col-3 card-margin">
-          <img class="card-img-top" src="{{item.image}}" alt="Recipe Image">
+    <div *ngIf="recipeDetail; else noRecipies" class="row">
+        <div class="card card-margin">
+          <img class="card-img-top card-img-width" src="{{recipeDetail.image}}" alt="Recipe Image">
           <div class="card-body">
-            <h5 class="card-title">{{item.title}}</h5>
+            <h5 class="card-title">{{recipeDetail.title}}</h5>
             <div class="card-text">
-              <div *ngIf="item.calories"><p>Calories:{{item.calories}}</p></div>
-              <div *ngIf="item.protein"><p>Protein:{{item.protein}}</p></div>
-              <div *ngIf="item.fat"><p>Fat:{{item.fat}}</p></div>
-              <div *ngIf="item.carbs"><p>Carbs:{{item.carbs}}</p></div>
+              <div><p>Cuisine: <span *ngFor="let item of recipeDetail.cuisines"> {{item}} </span></p></div>
+              <div><p>Time to Cook:{{recipeDetail.readyInMinutes}} min</p></div>
+              <div><p>Dish Type:{{recipeDetail.dishTypes[0]}}</p></div>
+              <div *ngIf="recipeDetail.nutrition.caloricBreakdown.percentProtein"><p>Protein :{{recipeDetail.nutrition.caloricBreakdown.percentProtein}} %</p></div>
+              <!-- <div *ngIf="item.protein"><p>Protein:{{item.protein}}</p></div> -->
+              <div *ngIf="recipeDetail.nutrition.caloricBreakdown.percentFat"><p>Fat:{{recipeDetail.nutrition.caloricBreakdown.percentFat}} %</p></div>
+              <div *ngIf="recipeDetail.nutrition.caloricBreakdown.percentCarbs"><p>Carbs:{{recipeDetail.nutrition.caloricBreakdown.percentCarbs}} %</p></div>
+              <div>
+                Ingredients: <span *ngFor="let i of recipeDetail.nutrition.ingredients"> {{i.name}},</span>
+              </div>
+              <div>
+                Instructions: <p>{{recipeDetail.instructions}}</p>
+              </div>
             </div>
-            <a class="btn btn-primary">Get Recipe</a>
+            <!-- <a class="btn btn-primary" (click)="getRecipeDetails(item.id)">Get Recipe</a> -->
           </div>
         </div>
       </div>

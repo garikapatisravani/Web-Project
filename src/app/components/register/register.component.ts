@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -11,15 +12,16 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted: boolean = false;
   registeredUsers: any[] = [];
+  isUsernameValid: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private registerService: RegisterService, private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group(
       {
-        userName: ['', Validators.required],
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        username: ['', Validators.required],
+        fullname: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
       },
@@ -30,14 +32,23 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    if (!this.registerForm.valid) {
+    if(this.registerForm.invalid){
       return;
     } else {
-      console.log(this.registerForm.value);
-      this.registeredUsers.push(this.registerForm.value);
-      localStorage.setItem("users", JSON.stringify(this.registeredUsers));
-      this.router.navigate(['/login']);
+      this.registerService.saveUser(this.registerForm.value).subscribe( res => {
+        this.router.navigate(['login']);
+      }, err => {
+        this.isUsernameValid = true;
+      })
     }
+    // if (!this.registerForm.valid) {
+    //   return;
+    // } else {
+    //   console.log(this.registerForm.value);
+    //   this.registeredUsers.push(this.registerForm.value);
+    //   localStorage.setItem("users", JSON.stringify(this.registeredUsers));
+    //   this.router.navigate(['/login']);
+    // }
   }
 
   mustMatch(controlName: string, matchingControlName: string) {

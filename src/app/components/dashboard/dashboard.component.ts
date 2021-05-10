@@ -13,9 +13,9 @@ export class DashboardComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-    this._snackBar.open('Welcome '+this.currentUser.firstName +'!','', {
+    this._snackBar.open('Welcome '+this.currentUser.fullname +'!','', {
       duration: 2000,
     });
   }

@@ -17,7 +17,7 @@
     <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       Logout
     </button> -->
-    <span class="userName" *ngIf="user">Hi, {{user.firstName}} !</span>
+    <span class="userName" *ngIf="user">Hi, {{user.fullname}} !</span>
     <button mat-raised-button color="warn" *ngIf="user" (click)="logOut()">Logout</button>
   </mat-toolbar>
 </div>

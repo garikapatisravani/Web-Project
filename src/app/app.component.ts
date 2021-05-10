@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.user = JSON.parse(sessionStorage.getItem("currentUser"));
     if(!this.user){
       this.router.navigate(['/login']);
     }else{
@@ -23,7 +23,7 @@ export class AppComponent {
 
   logOut() {
     this.user = null;
-    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("currentUser");
     this.router.navigate(['/login']);
   }
 }

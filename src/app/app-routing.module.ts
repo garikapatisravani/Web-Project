@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RecipeResultsComponent } from './components/recipe-results/recipe-results.component';
 
 const appRoutes:Routes=[
   {path:'', component: AppComponent},
@@ -17,7 +18,8 @@ const appRoutes:Routes=[
   {path:'find-recipes', component: DashboardComponent},
   {path:'nearby-restaurants', component: DashboardComponent},
   {path:'nutrition-by-name', component: RegisterComponent},
-  {path:'find-recipes', component: DashboardComponent},  
+  {path:'find-recipes', component: DashboardComponent},
+  {path:'recipes', component: RecipeResultsComponent},  
   {path:'**',redirectTo:'',pathMatch:'full'}
 ]
 

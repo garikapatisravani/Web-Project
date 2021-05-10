@@ -30,6 +30,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ResultsDialogComponent } from './components/results-dialog/results-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
+import { RecipeResultsComponent } from './components/recipe-results/recipe-results.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatDividerModule} from '@angular/material/divider';
     FindRecipesComponent,
     NutritionByNameComponent,
     NearbyRestaurantsComponent,
-    ResultsDialogComponent
+    ResultsDialogComponent,
+    RecipeResultsComponent
   ],
   imports: [
     BrowserModule,
