@@ -6,3 +6,12 @@
       background-color: transparent;
       border: none;
   }
+
+  .right-icon {
+      /* padding: 0 14px; */
+      flex: 1 1 auto;
+  }
+
+  .userName {
+      margin-right: 2%;
+  }

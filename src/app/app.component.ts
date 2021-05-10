@@ -8,15 +8,22 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Diet Recommendation';
+  user: any;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    let user = JSON.parse(localStorage.getItem("currentUser"));
-    if(!user){
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    if(!this.user){
       this.router.navigate(['/login']);
     }else{
       this.router.navigate(['/dashboard']);
     }
+  }
+
+  logOut() {
+    this.user = null;
+    localStorage.removeItem("currentUser");
+    this.router.navigate(['/login']);
   }
 }
