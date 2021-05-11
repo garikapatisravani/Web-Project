@@ -4,11 +4,11 @@ var router = express.Router();
 const Favourites = require("../models/favouriteModel");
 
 router.post('/favourites', async (req, res) => {
-  const body = {
-    userid: req.body.id,
-    favourites: req.body.favs
-  }
-  const saveRes = Favourites.save(body);
+  const newObj = new Favourites({
+    userid: req.body.userid,
+    favourites: req.body.favourites
+  });
+  const saveRes = newObj.save();
   try {
     res.send(saveRes);
   } catch (err) {
@@ -17,25 +17,40 @@ router.post('/favourites', async (req, res) => {
 });
 
 router.put('/favourites', async (req, res) => {
-  Favourites.findOneAndUpdate({ userid : req.body.id}, {favourites: req.body.favs})
-  .then( res =>{
-    if(res) {
-      res.send('Successfully Updated!');
-    } else {
-      res.send('Error in Updating');
-    }
-  }, err =>{
-    res.send(err);
-  })
+  console.log('fav$$$$%%%%%%%%', req.body[0]);
+  Favourites.findOneAndUpdate({ userid : req.body[0].userid}, {favourites: req.body[0].favourites});
+  try {
+    res.send('Successfully Updated!');
+  } catch (err) {
+    res.status(500).send(err);
+  }
+  // .then( res =>{
+  //   if(res) {
+  //     res.send('Successfully Updated!');
+  //   } else {
+  //     res.send('Error in Updating');
+  //   }
+  // }, err =>{
+  //   res.send(err);
+  // })
 })
 
-router.get('/favourites', async (req, res) => {
-  const result = await Favourites.find();
+router.get('/favourites/:id', async (req, res) => {
+  // console.log('get fav$$$$$$$$$$$$$$$$$$',req.params.id);
+  const result = await Favourites.find({userid: req.params.id});
   try {
     res.send(result);
   } catch (err) {
     res.status(500).send(err);
   }
+//   User.find({ name: 'Punit'}, function (err, docs) {
+//     if (err){
+//         console.log(err);
+//     }
+//     else{
+//         console.log("First function call : ", docs);
+//     }
+// });
 });
 
 // router.post("/technologies", async (req, res) => {

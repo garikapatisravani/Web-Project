@@ -65,14 +65,15 @@ export class GeneralService {
   }
 
   addToFavorite(item){
-    return this._http.post(this.serverUrl+'recipes/favourites',item);
+    return this._http.post(this.serverUrl+'/recipes/favourites',item);
   }
 
   updateToFavorite(obj) {
-    return this._http.put(this.serverUrl+'recipes/favourites',obj);
+    return this._http.put(this.serverUrl+'/recipes/favourites',obj);
   }
 
   getFavorite(id){
-    return this._http.get(this.serverUrl+'recipes/favourites/'+id);
+    const url = `${this.serverUrl}/recipes/favourites/${id}`;
+    return this._http.get(url);
   }
 }

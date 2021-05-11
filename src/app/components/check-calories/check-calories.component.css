@@ -8,4 +8,9 @@
     width: 100%;
   }
   
+  .card-margin {
+    margin: 1%;
+    margin-left: 5%;
+    color: black;
+}
  

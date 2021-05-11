@@ -16,12 +16,22 @@ export class ResultsDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public results, private generalService: GeneralService) {}
 
   ngOnInit(): void {
-    this.addToFav(this.results);
-    this.currentUser = sessionStorage.getItem('token');
+    this.currentUser = JSON.parse(sessionStorage.getItem("currentUser")).token;
+    this.getRecipeInfo(this.results);
+  }
+
+  getRecipeInfo(id) {
+    this.generalService.getRecipeInfo(id).subscribe(details => {
+      this.recipeDetail = details;
+    })
   }
 
   addToFav(item) {
-    this.currentFavItem = item;
+    this.currentFavItem = {
+      title: item.title,
+      id: item.id,
+      image: item.image
+    };
     this.getFav();
   }
 
@@ -41,14 +51,14 @@ export class ResultsDialogComponent implements OnInit {
 
   getFav(){
     this.generalService.getFavorite(this.currentUser).subscribe((data: any)=>{
-      if(data){
+      if(data && data.length){
         const favObj = data;
-        favObj.favs.push(this.currentFavItem);
+        favObj[0].favourites.push(this.currentFavItem);
         this.updateFav(favObj);
       } else {
         let obj = {
           userid: this.currentUser,
-          favs: this.currentFavItem
+          favourites: [this.currentFavItem]
         }
         this.addFav(obj);
       }
