@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralService {
 
+  serverUrl;
   fs_clientID = "PPOK5TG1N3HHAGLV0NZGYAE2Z3PN1NYILWUFZUDZIAVLUBBC";
   fs_clientSecret = "P0PVZN1JTV4T3L0ULYQTUH1IJMH5J0CUW5NL5PVD54F2R5HQ";
   edamam_id = "a3afde74";
@@ -16,7 +18,9 @@ export class GeneralService {
   private recipeResults = new BehaviorSubject<any[]>(null);
   getUpdatedRecipeResults = this.recipeResults.asObservable();
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {
+    this.serverUrl = environment.serverUrl;
+   }
 
   updateRecipeResults(value: any[]) {
     this.recipeResults.next(value);
@@ -58,5 +62,17 @@ export class GeneralService {
   getCalorieCount(name){
     return this._http.get('https://api.edamam.com/api/nutrition-data?app_id=' + this.edamam_id + '&app_key=' + this.edamam_key + '&ingr='+ name);
     // https://api.edamam.com/api/nutrition-data?app_id=${YOUR_APP_ID}&app_key=${YOUR_APP_KEY}&ingr=1%20large%20apple
+  }
+
+  addToFavorite(item){
+    return this._http.post(this.serverUrl+'recipes/favourites',item);
+  }
+
+  updateToFavorite(obj) {
+    return this._http.put(this.serverUrl+'recipes/favourites',obj);
+  }
+
+  getFavorite(id){
+    return this._http.get(this.serverUrl+'recipes/favourites/'+id);
   }
 }

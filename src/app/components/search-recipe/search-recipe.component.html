@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+    <div class="row">
+      <div *ngFor="let item of recipeList" class="list-group-item clearfix">
+        <div class="pull-left">
+          <h4 class="list-group-item-heading">{{ item.recipe.label }}</h4>
+          <a href="{{item.recipe.url}}" class="list-group-item-text" target="_blank">{{ item.recipe.url }}</a>
+        </div>
+  
+        <span class="pull-right">
+          <img src="{{item.recipe.image}}" style="width: 70px; height: 50px;" align="center" />
+        </span>
+  
+    </div>
+  </div>
