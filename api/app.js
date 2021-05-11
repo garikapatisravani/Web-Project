@@ -17,9 +17,6 @@ var registerRouter = require("./routes/registerRoute");
 var config = require("./config/config");
 var favRouter = require("./routes/favRoute");
 
-//const request = require('request');
-//const cheerio = require('cheerio');
-
 var app = express();
 
 // view engine setup
@@ -35,7 +32,7 @@ app.use(express.static(path.join(__dirname, "public/dist/phase1/")));
 
 mongoose
   .connect(config.MongoUri, { useNewUrlParser: true })
-  .then(() => console.log("Conected to MogonDB"))
+  .then(() => console.log("Conected to MongoDB"))
   .catch(err => console.log("Error in connectin to MongoDB"));
 
 
@@ -64,7 +61,7 @@ app.use(passport.session());
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/users", usersRouter);
-app.use("/jobs", favRouter);
+app.use("/recipes", favRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
